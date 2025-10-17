@@ -1,0 +1,733 @@
+/* Définir les polices personnalisées */
+@font-face {
+    font-family: 'INGAME';
+    src: url('pol/INGAME.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Robot-Rebels';
+    src: url('pol/Robot-Rebels.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('pol/Roboto-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Boul';
+    src: url('pol/Boul.otf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'PlayfairDisplaySC-Bold';
+    src: url('pol/PlayfairDisplaySC-Bold.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Sobatyan-Regular';
+    src: url('pol/Sobatyan-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto-MediumItalic';
+    src: url('pol/Roboto-MediumItalic.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'MilestoneBrush';
+    src: url('pol/MilestoneBrush.otf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Rostack';
+    src: url('pol/Rostack.otf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto-Black';
+    src: url('pol/Roboto-Black.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Matemasie-Regular';
+    src: url('pol/Matemasie-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'NewAmsterdam-Regular';
+    src: url('pol/NewAmsterdam-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'NerkoOne-Regular';
+    src: url('pol/NerkoOne-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url('pol/Roboto-Bold.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'DMSerifText-Regular';
+    src: url('pol/DMSerifText-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ========== Base & Variables ========== */
+:root{ /* Déclare les variables globales CSS accessibles partout */
+  --green-dark: #2E8B57; /* Vert principal foncé */
+  --green-light: #8BC34A; /* Vert clair secondaire */
+  --bg: #ffffff; /* Couleur d’arrière-plan principale (blanc) */
+  --muted: #707070; /* Couleur grise pour le texte secondaire */
+  --card-bg: #fbfdfb; /* Couleur d’arrière-plan des cartes */
+  --radius: 12px; /* Rayon de bordure standard (coins arrondis) */
+  --max-width: 1200px; /* Largeur maximale du conteneur */
+  --container-pad: 20px; /* Rembourrage horizontal du conteneur */
+  --shadow: 0 6px 18px rgba(34,34,34,0.06); /* Ombre douce utilisée sur les cartes et menus */
+  --accent: linear-gradient(90deg,var(--green-dark), #3aa36a); /* Dégradé de vert pour les éléments d’accent */
+}
+
+*{box-sizing:border-box} /* Inclut bordures et marges dans le calcul des dimensions */
+html,body{height:100%} /* Définit la hauteur du document à 100% de la fenêtre */
+body{
+  margin:0; /* Supprime les marges par défaut du navigateur */
+  font-family: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; /* Police principale */
+  color:#222; /* Couleur de texte par défaut (gris très foncé) */
+  background:var(--bg); /* Applique la couleur de fond blanche */
+  -webkit-font-smoothing:antialiased; /* Améliore le rendu des polices sur WebKit */
+  -moz-osx-font-smoothing:grayscale; /* Améliore le rendu des polices sur macOS */
+  line-height:1.5; /* Espacement vertical entre les lignes de texte */
+}
+
+/* Container */
+.container{
+  width:100%; /* Prend toute la largeur disponible */
+  max-width:var(--max-width); /* Mais ne dépasse pas 1200px */
+  margin:0 auto; /* Centre le conteneur horizontalement */
+  padding:0 var(--container-pad); /* Ajoute un espacement latéral */
+}
+
+/* ========== Header ========== */
+.site-header{
+  position:sticky; /* Rend le header collant en haut lors du scroll */
+  top:0; /* Positionne le header en haut de la page */
+  z-index:80; /* Le place au-dessus des autres éléments */
+  backdrop-filter: blur(6px); /* Ajoute un effet de flou derrière le header */
+  background: rgba(255,255,255,0.86); /* Fond blanc semi-transparent */
+  border-bottom:1px solid rgba(0,0,0,0.04); /* Légère bordure de séparation */
+}
+.header-inner{
+  display:flex; /* Utilise flexbox pour aligner le contenu */
+  gap:16px; /* Espace entre les éléments enfants */
+  align-items:center; /* Aligne verticalement au centre */
+  justify-content:space-between; /* Sépare les éléments gauche/droite */
+  padding:12px 0; /* Espacement vertical du header */
+}
+
+/* Brand */
+.brand{
+  display:flex; /* Affiche le logo et le texte côte à côte */
+  gap:12px; /* Espace entre logo et texte */
+  align-items:center; /* Centre verticalement */
+  text-decoration:none; /* Supprime le soulignement du lien */
+  color:inherit; /* Hérite de la couleur du texte parent */
+}
+.brand svg{flex-shrink:0} /* Empêche le logo SVG de se redimensionner */
+.brand-text .site-title{
+  font-family:"Poppins",sans-serif; /* Police accentuée pour le titre */
+  font-weight:600; /* Poids de police semi-gras */
+  font-size:16px; /* Taille du titre */
+  line-height:1; /* Hauteur de ligne compacte */
+}
+.brand-text .site-sub{
+  font-size:12px; /* Taille du sous-texte */
+  color:var(--muted); /* Couleur grise discrète */
+}
+
+/* Desktop nav */
+.site-nav{display:block} /* Affiche la navigation par défaut */
+.menu{
+  list-style:none; /* Supprime les puces des listes */
+  margin:0; /* Supprime les marges */
+  padding:0; /* Supprime le padding */
+  display:flex; /* Aligne les éléments horizontalement */
+  gap:8px; /* Espace entre les liens */
+  align-items:center; /* Centre verticalement les éléments */
+}
+.menu > li{position:relative} /* Nécessaire pour positionner les sous-menus */
+.menu a, .menu .menu-btn{
+  display:inline-flex; /* Affiche les éléments de menu en flex */
+  align-items:center; /* Centre verticalement le texte et icône */
+  gap:8px; /* Espace entre texte et icône éventuelle */
+  padding:8px 12px; /* Espace intérieur des boutons */
+  border-radius:8px; /* Coins arrondis */
+  color:var(--muted); /* Couleur grise du texte */
+  text-decoration:none; /* Supprime le soulignement */
+  font-weight:600; /* Texte en semi-gras */
+  background:transparent; /* Aucun fond par défaut */
+  border:none; /* Supprime la bordure */
+  cursor:pointer; /* Change le curseur en pointeur */
+}
+.menu a:hover, .menu .menu-btn:hover{
+  color:var(--green-dark); /* Change la couleur du texte en vert foncé au survol */
+  background:rgba(46,139,87,0.06); /* Ajoute un fond vert très clair au survol */
+}
+
+/* Mobile toggle */
+.mobile-toggle{
+  display:none; /* Caché par défaut sur desktop */
+  background:none; /* Pas de fond */
+  border:none; /* Pas de bordure */
+  padding:8px; /* Petite zone cliquable */
+  cursor:pointer; /* Curseur pointeur */
+}
+.mobile-toggle .burger{
+  width:26px; /* Largeur de la barre du burger */
+  height:2px; /* Épaisseur de la barre */
+  background:#333; /* Couleur du trait (noir/gris foncé) */
+  position:relative; /* Position relative pour placer les pseudo-éléments */
+  display:block; /* Affiche l’élément comme un bloc */
+}
+.mobile-toggle .burger::before,
+.mobile-toggle .burger::after{
+  content:""; /* Crée deux traits supplémentaires */
+  position:absolute; /* Position absolue par rapport à la barre principale */
+  left:0; /* Aligne à gauche */
+  right:0; /* Étend sur toute la largeur */
+  height:2px; /* Même épaisseur que la barre principale */
+  background:#333; /* Même couleur que la barre principale */
+}
+.mobile-toggle .burger::before{top:-8px} /* Barre du haut à 8px au-dessus */
+.mobile-toggle .burger::after{bottom:-8px} /* Barre du bas à 8px en dessous */
+
+/* ========== Mega menu ========== */
+.megamenu{
+  position:absolute; /* Positionne le méga menu de manière absolue sous le lien parent */
+  left:0; /* Aligné à gauche du parent */
+  top:calc(100% + 10px); /* Placé juste en dessous du menu principal avec un petit écart */
+  width:760px; /* Largeur du panneau de méga menu */
+  max-width:90vw; /* Ne dépasse pas 90% de la largeur de l’écran */
+  background:linear-gradient(180deg,#fff,#fbfffb); /* Dégradé léger du blanc vers un vert très clair */
+  box-shadow:var(--shadow); /* Ombre douce sous le menu */
+  border-radius:12px; /* Coins arrondis */
+  padding:18px; /* Espacement intérieur */
+  display:none; /* Caché par défaut */
+  pointer-events:auto; /* Permet les interactions souris */
+  z-index:90; /* S’affiche au-dessus du contenu normal */
+}
+.megamenu[aria-hidden="false"]{display:block} /* Affiche le menu lorsqu’il est activé */
+.mega-grid{
+  display:grid; /* Utilise la grille CSS pour organiser les colonnes */
+  grid-template-columns:repeat(3,1fr); /* Trois colonnes égales */
+  gap:14px; /* Espacement entre les colonnes */
+}
+.mega-col h4{
+  margin:0 0 6px 0; /* Supprime la marge du haut, ajoute 6px en bas */
+  font-family:"Poppins",sans-serif; /* Police accentuée pour les titres */
+  color:var(--green-dark); /* Couleur verte principale */
+}
+.mega-col p{
+  margin:0; /* Supprime les marges autour du texte */
+  color:var(--muted); /* Couleur grise discrète */
+  font-size:14px; /* Taille de texte plus petite */
+}
+
+/* ========== Hero ========== */
+.hero{
+  position:relative; /* Position relative pour les éléments superposés */
+  min-height:58vh; /* Hauteur minimale : 58% de la hauteur de l’écran */
+  display:flex; /* Active le mode flexbox */
+  align-items:center; /* Centre le contenu verticalement */
+  color:#fff; /* Texte en blanc */
+  background-image:linear-gradient(120deg, rgba(46,139,87,0.86), rgba(139,195,74,0.86)); /* Dégradé vert semi-transparent */
+  background-size:cover; /* Le fond couvre toute la section */
+  background-position:center; /* Centrage du fond */
+  padding:64px 0; /* Espacement vertical interne */
+}
+.hero-inner{max-width:980px} /* Conteneur interne limité à 980px */
+.hero h1{
+  font-family:"Poppins",sans-serif; /* Police pour le titre */
+  font-size:34px; /* Taille de police du titre principal */
+  margin:0 0 12px; /* Supprime la marge du haut et ajoute 12px en bas */
+  line-height:1.05; /* Hauteur de ligne serrée */
+}
+.hero .lead{
+  font-size:18px; /* Taille du texte de description */
+  opacity:0.95; /* Légère transparence */
+  margin-bottom:18px; /* Espace sous le paragraphe */
+}
+.hero-cta .btn{margin-right:10px} /* Espacement entre les deux boutons d’action */
+
+/* Les Images */
+.hero {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 500px; /* hauteur de la section */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* assombrit l'image */
+  z-index: 1;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2; /* le texte passe au-dessus de l’overlay */
+  padding: 40px;
+}
+
+.hero h1 {
+  font-family: 'PlayfairDisplaySC-Bold', serif;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero .lead {
+  font-family: 'Roboto-Regular', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.hero-cta .btn {
+  margin: 5px;
+}
+
+/* --- Mise en page principale --- */
+.section-apropos {
+  padding: 60px 0;
+}
+
+.apropos-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+/* Texte à gauche */
+.apropos-texte {
+  flex: 1 1 55%;
+}
+
+.apropos-texte h2 {
+  font-family: 'PlayfairDisplaySC-Bold', serif;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.apropos-texte p {
+  font-family: 'Roboto-Regular', sans-serif;
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* Image à droite */
+.apropos-image {
+  flex: 1 1 40%;
+  text-align: right;
+}
+
+.image-a-propos {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.apropos-plus {
+  display: none;
+  overflow: hidden;
+  transition: max-height 0.6s ease;
+}
+
+.btn-lire-suite {
+  background-color: #008037;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  cursor: pointer;
+  font-family: 'Roboto-Bold', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.btn-lire-suite:hover {
+  background-color: #00a54f;
+}
+
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .apropos-grid {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .apropos-image {
+    text-align: center;
+  }
+}
+
+
+.image-go-green {
+  width: 100%; /* Largeur complète du conteneur */
+  max-width: 700px; /* Largeur maximale de 700px */
+  border-radius: var(--radius); /* Coins arrondis standards */
+  margin: 16px 0; /* Espacement vertical */
+  display: block; /* Affichage en bloc */
+}
+
+.image-partenaire {
+  width: 100%; /* Prend toute la largeur de la case partenaire */
+  height: auto; /* Hauteur ajustée automatiquement */
+  padding: 16px; /* Espace interne autour du logo */
+  border-radius: 10px; /* Coins arrondis */
+  object-fit: contain; /* L’image garde son ratio sans débordement */
+  border: 1px solid rgba(46,139,87,0.06); /* Bordure verte très claire */
+  background: #f5f9f5; /* Fond légèrement vert/gris clair */
+  display: block; /* Évite les espaces blancs indésirables */
+  transition: transform 0.3s ease; /* Animation douce sur le zoom */
+}
+.image-partenaire:hover {
+  transform: scale(1.05); /* Zoom léger au survol */
+}
+
+/* ========== Sections ========== */
+.section{padding:56px 0} /* Ajoute 56 px d’espace en haut et en bas de chaque section */
+.section-alt{background:#fbfdfb} /* Variante de section avec fond légèrement vert pâle */
+.section h2{
+  font-family:"Poppins",sans-serif; /* Police de titre moderne */
+  color:var(--green-dark); /* Couleur de texte verte principale */
+  margin:0 0 18px; /* Aucun espace au-dessus, 18 px en dessous */
+}
+.muted{color:var(--muted)} /* Applique une couleur grise discrète */
+.small{font-size:13px} /* Réduit la taille du texte */
+
+/* --- Grille des cartes --- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+/* --- Carte principale --- */
+.card {
+  background: #fff;
+  border-radius: 1px;
+  overflow: hidden; /* Pour arrondir l’image aussi */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Effet au survol */
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Image de la carte --- */
+.image-mission {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- Contenu de la carte --- */
+.card h3 {
+  font-family: 'PlayfairDisplaySC-Bold', serif;
+  font-size: 1.3rem;
+  margin: 16px 20px 10px;
+  color: #2a2a2a;
+}
+
+.card p {
+  font-family: 'Roboto-Regular', sans-serif;
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0 20px 20px;
+  line-height: 1.5;
+}
+
+/* --- Animation douce d'apparition (optionnel mais stylé) --- */
+.card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.2s; }
+.card:nth-child(4) { animation-delay: 0.3s; }
+.card:nth-child(5) { animation-delay: 0.4s; }
+.card:nth-child(6) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Partners */
+.partners-grid{
+  display:grid; /* Affiche les logos des partenaires en grille */
+  grid-template-columns:repeat(4,1fr); /* Quatre colonnes égales */
+  gap:14px; /* Espace de 14 px entre les logos */
+  margin-top:18px; /* Espace au-dessus du bloc partenaires */
+}
+.logo-placeholder{
+  background:linear-gradient(90deg,#f5f9f5,#eef8ee); /* Fond dégradé clair */
+  padding:22px; /* Espacement intérieur uniforme */
+  border-radius:10px; /* Coins arrondis */
+  text-align:center; /* Centre le texte horizontalement */
+  font-weight:700; /* Texte en gras */
+  color:var(--green-dark); /* Texte vert foncé */
+  border:1px dashed rgba(46,139,87,0.06); /* Bordure en pointillés très claire */
+}
+
+/* Contact grid */
+.contact-grid{
+  display:grid; /* Mise en page en deux colonnes */
+  grid-template-columns:1fr 380px; /* Colonne principale + colonne latérale fixe */
+  gap:24px; /* Espace horizontal entre les deux blocs */
+}
+.contact-form{
+  background:#fff; /* Fond blanc pour le formulaire */
+  padding:18px; /* Espace intérieur de 18 px */
+  border-radius:12px; /* Coins arrondis */
+  box-shadow:var(--shadow); /* Ombre douce autour du bloc */
+}
+.form-row{margin-bottom:12px} /* Espace vertical entre les champs du formulaire */
+.form-row label{
+  display:block; /* Chaque label sur sa propre ligne */
+  margin-bottom:6px; /* Petit espace entre label et champ */
+  font-weight:600; /* Texte semi-gras */
+}
+.form-row input, .form-row textarea{
+  width:100%; /* Champs à 100 % de la largeur disponible */
+  padding:10px; /* Espace intérieur pour le confort de saisie */
+  border:1px solid #e3e3e3; /* Bordure grise claire */
+  border-radius:8px; /* Coins légèrement arrondis */
+  font-size:14px; /* Taille de texte lisible */
+}
+.form-row input:focus, .form-row textarea:focus{
+  outline:none; /* Supprime le contour bleu par défaut */
+  border-color:var(--green-dark); /* Bordure verte au focus */
+  box-shadow:0 6px 20px rgba(46,139,87,0.06); /* Légère ombre verte lors du focus */
+}
+.form-actions{
+  display:flex; /* Aligne les boutons sur une ligne */
+  gap:10px; /* Espace entre les boutons */
+  align-items:center; /* Centre verticalement */
+  margin-top:8px; /* Espace au-dessus des boutons */
+}
+.btn{
+  display:inline-block; /* Rend le bouton inline-block */
+  padding:10px 16px; /* Espacement interne horizontal et vertical */
+  border-radius:10px; /* Coins arrondis */
+  text-decoration:none; /* Supprime le soulignement sur les liens-boutons */
+  cursor:pointer; /* Change le curseur au survol */
+  border:1px solid transparent; /* Bordure invisible par défaut */
+}
+.btn-primary{
+  background:var(--green-dark); /* Bouton vert foncé plein */
+  color:#fff; /* Texte blanc */
+}
+.btn-outline{
+  background:transparent; /* Fond transparent */
+  border-color:#dfe7df; /* Bordure vert pâle */
+  color:var(--green-dark); /* Texte vert foncé */
+}
+.error{
+  color:#c33; /* Texte rouge pour les messages d’erreur */
+  font-size:13px; /* Taille réduite */
+  min-height:18px; /* Hauteur minimale pour réserver la place même vide */
+  display:block; /* Affichage en bloc */
+  margin-top:6px; /* Espace au-dessus du message */
+}
+.form-feedback{
+  margin-top:8px; /* Espace au-dessus du message de retour */
+  color:var(--green-dark); /* Texte vert pour message de succès */
+  font-weight:600; /* Texte en semi-gras */
+}
+/* ========== Footer ========== */
+.site-footer {
+  background: #2E8B57; /* Couleur de fond du pied de page : vert foncé */
+  padding: 30px 0; /* Espacement vertical en haut et en bas du footer */
+  color: #fff; /* Texte en blanc */
+  border-top: none; /* Supprime toute bordure supérieure */
+  font-family: 'Open Sans', sans-serif; /* Police du texte du footer */
+}
+
+.footer-inner {
+  display: flex; /* Mise en page en flexbox */
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne sur petits écrans */
+  justify-content: space-between; /* Espace égal entre les groupes d’éléments */
+  align-items: center; /* Centre verticalement le contenu */
+  gap: 20px; /* Espace entre les éléments enfants */
+}
+
+.footer-logo {
+  display: flex; /* Affiche le logo et le texte côte à côte */
+  align-items: center; /* Centre verticalement */
+  gap: 10px; /* Espace entre le logo et le texte */
+  font-weight: 600; /* Texte en semi-gras */
+  font-size: 16px; /* Taille de texte du nom du site */
+}
+
+.image-footer-logo {
+  width: 40px; /* Largeur du logo dans le footer */
+  height: 40px; /* Hauteur correspondante */
+  object-fit: contain; /* Conserve les proportions du logo */
+  border-radius: 8px; /* Coins légèrement arrondis */
+}
+
+.footer-nav a {
+  margin: 0 10px; /* Espacement horizontal entre les liens */
+  color: #fff; /* Couleur de texte blanche */
+  text-decoration: none; /* Supprime le soulignement */
+  font-size: 14px; /* Taille moyenne pour les liens */
+  transition: color 0.3s ease; /* Animation douce sur le changement de couleur */
+}
+
+.footer-nav a:hover {
+  color: #cce6cc; /* Change la couleur au survol vers un vert clair */
+}
+
+.social-links a {
+  margin-left: 10px; /* Espace entre les icônes sociales */
+  display: inline-block; /* Affiche chaque lien comme un petit bloc */
+}
+
+.footer-social-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: none;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+
+.footer-social-icon:hover {
+  transform: scale(1.1); /* Légère mise à l’échelle (zoom) au survol */
+  filter: brightness(0.9) invert(1); /* Légère variation de luminosité sur le survol */
+}
+
+.small.muted {
+  font-size: 12px; /* Texte plus petit */
+  color: rgba(255,255,255,0.7); /* Blanc semi-transparent */
+  margin-top: 4px; /* Petit espace au-dessus du texte */
+}
+
+/* Utilities */
+.muted.small{opacity:0.9} /* Légère transparence pour le texte combinant .muted et .small */
+
+
+/* ========== Responsive (mobile) ========== */
+/* User requested: @media all and (max-width: 1024px) */
+@media all and (max-width: 1024px){ /* Applique ces styles quand l’écran est inférieur ou égal à 1024 px */
+  .header-inner{padding:10px 0} /* Réduit l’espace vertical dans l’en-tête */
+  .mobile-toggle{display:block} /* Affiche le bouton du menu mobile (burger) */
+  .site-nav{
+    position:fixed; /* Positionne la navigation de façon fixe à l’écran */
+    inset:auto 0 0 0; /* Ancre la barre de navigation en bas */
+    background:rgba(255,255,255,0.98); /* Fond blanc quasi opaque */
+    transform:translateY(-100%); /* Cache la navigation hors de la vue (en haut) */
+    transition:transform .28s ease; /* Animation fluide lors de l’ouverture/fermeture */
+    backdrop-filter:blur(6px) /* Ajoute un effet de flou derrière le menu */
+  }
+  .site-nav.open{
+    transform:translateY(0); /* Fait descendre le menu lorsqu’il est ouvert */
+    padding:18px 0; /* Ajoute un peu de marge verticale interne */
+    border-top:1px solid rgba(0,0,0,0.04); /* Fine bordure au-dessus du menu mobile */
+  }
+  .menu{
+    flex-direction:column; /* Les liens passent en colonne */
+    gap:6px; /* Espace réduit entre les éléments */
+    padding:14px; /* Espacement intérieur global */
+  }
+  .menu a, .menu .menu-btn{
+    width:100%; /* Chaque lien occupe toute la largeur */
+    text-align:left; /* Texte aligné à gauche */
+    padding:12px; /* Espacement intérieur des liens */
+    margin:0; /* Supprime toute marge externe */
+    border-radius:8px; /* Coins arrondis */
+  }
+  .megamenu{
+    position:static; /* En mobile, le méga-menu s’affiche dans le flux normal */
+    width:100%; /* Prend toute la largeur disponible */
+    margin-top:8px; /* Légère séparation au-dessus */
+    padding:12px; /* Espacement interne réduit */
+    display:none; /* Caché par défaut */
+  }
+  .megamenu[aria-hidden="false"]{display:block} /* Affiche le méga-menu quand il est activé */
+  .mega-grid{grid-template-columns:repeat(2,1fr)} /* Passe à deux colonnes au lieu de trois */
+  .hero{
+    padding:40px 0; /* Réduit la hauteur verticale du bandeau d’accueil */
+    min-height:48vh; /* Moins haut sur les petits écrans */
+  }
+  .hero h1{font-size:26px} /* Titre principal plus petit */
+  .cards{grid-template-columns:repeat(1,1fr)} /* Les cartes s’affichent en une seule colonne */
+  .partners-grid{grid-template-columns:repeat(2,1fr)} /* Les logos partenaires passent à deux par ligne */
+  .contact-grid{grid-template-columns:1fr} /* La grille contact devient une seule colonne */
+  .container{padding:0 16px} /* Réduit le padding latéral du conteneur */
+  .megamenu{border-radius:10px} /* Coins légèrement arrondis pour le méga-menu */
+}
+
+/* Small phones */
+@media all and (max-width:420px){ /* Pour les très petits écrans (smartphones compacts) */
+  .brand-text .site-title{font-size:14px} /* Titre de marque plus petit */
+  .hero h1{font-size:22px} /* Réduit encore le titre principal */
+  .mega-grid{grid-template-columns:1fr} /* Le méga-menu s’affiche en une seule colonne */
+}

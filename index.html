@@ -1,54 +1,126 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Test Firestore</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portail Captif — Connexion</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>🔥 Test de connexion à Firestore</h2>
-  <p id="result">Chargement...</p>
 
-  <!-- Import Firebase -->
-  <script type="module">
-    // Import des SDK Firebase
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<div class="container">
+  <h1>Connexion Wi-Fi</h1>
+  <p>Entrez votre email et votre code unique pour accéder à Internet.</p>
 
-    // ⚙️ Configuration de ton projet Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyDbrBWy7hHQEelg1k5Dqdi14CQ9T4yYd00",
-      authDomain: "lossa-b3-11.firebaseapp.com",
-      projectId: "lossa-b3-11",
-      storageBucket: "lossa-b3-11.appspot.com",
-      messagingSenderId: "691043768338",
-      appId: "1:691043768338:web:631377e231f179a116d268"
-    };
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="Votre email" required>
+    <input type="text" id="code" placeholder="Votre code unique" required>
+    <button type="submit">Se connecter</button>
+  </form>
 
-    // Initialisation
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+  <p id="message"></p>
+</div>
 
-    const result = document.getElementById("result");
+<script type="module">
+  // ---------- IMPORTS ----------
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
+  import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+  import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
-    async function testFirestore() {
-      try {
-        const querySnapshot = await getDocs(collection(db, "users"));
-        if (querySnapshot.empty) {
-          result.textContent = "✅ Connexion réussie, mais la collection 'users' est vide.";
-        } else {
-          let dataList = [];
-          querySnapshot.forEach(doc => {
-            dataList.push(`${doc.id}: ${JSON.stringify(doc.data())}`);
-          });
-          result.innerHTML = "<b>✅ Connexion réussie !</b><br><br>" + dataList.join("<br>");
-        }
-      } catch (error) {
-        console.error(error);
-        result.innerHTML = `<b>❌ Erreur :</b> ${error.message}`;
-      }
+  // ---------- CONFIG FIREBASE ----------
+  const firebaseConfig = {
+    apiKey: "AIzaSyDLZZyoiHysKOL1XwnOUV2-QhdSsZZCHbs",
+    authDomain: "lossa-b3-11.firebaseapp.com",
+    projectId: "lossa-b3-11",
+    storageBucket: "lossa-b3-11.firebasestorage.app",
+    messagingSenderId: "637445869503",
+    appId: "1:637445869503:web:3948cb73f023a753e29b0a",
+    measurementId: "G-4720V8DGPK"
+  };
+
+  // ---------- INITIALISATION ----------
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  const form = document.getElementById('loginForm');
+  const msg = document.getElementById('message');
+
+  // ---------- PARAMÈTRES UAM ----------
+  function getQueryParams() {
+    const params = {};
+    location.search.replace(/^\?/, '').split('&').forEach(pair => {
+      if (!pair) return;
+      const [k, v] = pair.split('=').map(decodeURIComponent);
+      params[k] = v === undefined ? '' : v;
+    });
+    return params;
+  }
+
+  const params = getQueryParams();
+
+  // ---------- SURVEILLANCE DE CONNEXION ----------
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("✅ Utilisateur connecté à Firebase Auth :", user.uid);
+    } else {
+      console.log("🚫 Aucun utilisateur connecté.");
+    }
+  });
+
+  // ---------- GESTION DU FORMULAIRE ----------
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim().toLowerCase();
+    const code = document.getElementById('code').value.trim();
+
+    if (!email || !code) {
+      msg.textContent = "Veuillez renseigner un email et un code.";
+      msg.style.color = "red";
+      return;
     }
 
-    testFirestore();
-  </script>
+    msg.textContent = "Vérification...";
+    msg.style.color = "black";
+
+    try {
+      // ---------- CONNEXION ANONYME À FIREBASE ----------
+      await signInAnonymously(auth);
+
+      // ---------- RECHERCHE DANS FIRESTORE ----------
+      const q = query(collection(db, "users"), where("code", "==", code));
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.empty) {
+        msg.textContent = "Code invalide.";
+        msg.style.color = "red";
+        return;
+      }
+
+      const codeSnap = querySnapshot.docs[0];
+      const data = codeSnap.data();
+
+      if (!data.actif) {
+        msg.textContent = "Code désactivé.";
+        msg.style.color = "red";
+        return;
+      }
+
+      msg.textContent = "Connexion réussie — redirection...";
+      msg.style.color = "green";
+
+      // Ici tu peux rediriger :
+      // window.location.href = "portail.html";
+
+    } catch (err) {
+      console.error(err);
+      msg.textContent = "Erreur interne. Réessayez.";
+      msg.style.color = "red";
+    }
+  });
+</script>
+
 </body>
 </html>
